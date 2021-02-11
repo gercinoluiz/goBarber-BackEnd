@@ -22,7 +22,7 @@ export default class ResetPassowrdService {
         @inject('USersRepository')
         private userRepository: IUserRepository,
 
-        @inject('UsersTokenRepository')
+        @inject('UserTokensRepository')
         private usersTokenRepository: IUserTokensRepository,
 
         @inject('HashProvider')

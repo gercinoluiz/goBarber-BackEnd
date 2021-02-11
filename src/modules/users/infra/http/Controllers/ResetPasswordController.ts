@@ -20,7 +20,9 @@ export default class ResetPasswordController {
         })
 
 
-        return respose.status(204).json()
+        return respose.status(200).json({
+            message: 'Senha alterada com sucesso'
+        })
     }
 
 }

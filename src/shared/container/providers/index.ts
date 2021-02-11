@@ -3,10 +3,13 @@ import DiskStorageProvider from './StorageProviders/implementations/DiskStorageP
 import IStorageProvider from './StorageProviders/models/IStorageProvider'
 import IMailProvider from './MailProvider/models/IMailProvider';
 import EtherealMailProvider from './MailProvider/implementations/EtherealMailProvider';
+import IMailTemplateProvider from './MailTemplateProvider/models/IMailTemplateProvider';
+import HandlebarsMailTemplateProvider from './MailTemplateProvider/implementations/HandlebarsMailProvider';
 
 
 
 
 container.registerSingleton<IStorageProvider>('StorageProvider', DiskStorageProvider)
+container.registerSingleton<IMailTemplateProvider>('MailTemplateProvider', HandlebarsMailTemplateProvider)
 
-container.registerInstance<IMailProvider>('MailProvider', new EtherealMailProvider()) // I do different here because I am using it in a constructor TODO: See other ways
+container.registerInstance<IMailProvider>('MailProvider', container.resolve( EtherealMailProvider)) // I do different here because I am using it in a constructor TODO: See other ways
