@@ -5,7 +5,7 @@ import IMailProvider from '@shared/container/providers/MailProvider/models/IMail
 import IUsersRepository from '@modules/users/repositories/IUserRepository';
 import AppError from '@shared/errors/AppError';
 import IUserTokensRepository from '../repositories/IUserTokensRepository';
-import { path } from 'path';
+import path from 'path';
 
 interface IRequest {
     email: string
@@ -50,7 +50,7 @@ export default class SendForgotPasswordEmailService {
                 variables:{
                     name: user.name,
                     link: `http://localhost:3000/reset_password?token=${token}`,
-                    
+
                 }
             }
 

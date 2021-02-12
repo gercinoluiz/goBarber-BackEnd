@@ -25,7 +25,6 @@ class AuthenticationService {
 
     constructor(
        @inject("USersRepository")
-
         private userRepository: IUserRepository,
         @inject("HashProvider")
         private hashProvider: IHashProvider
@@ -38,12 +37,16 @@ class AuthenticationService {
     public async execute({ email, password }: Request): Promise<Response> {
 
 
+
         const user = await this.userRepository.findByEmail( email) // It didint get it coreect at first because I didint search email as an DTO
 
 
         if (!user?.email) throw new AppError("Email or password does not match any result", 401) // exclamation mark says it might be undefined
 
-        // The code bellow return a true or false
+
+        console.log(this.hashProvider)
+
+           // The code bellow return a true or false
         if (! await this.hashProvider.compareHash(password, user.password)) {
             throw new AppError("Email or password does not match any result", 401)
         }
