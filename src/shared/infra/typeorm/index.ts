@@ -1,7 +1,7 @@
-import { createConnection } from "typeorm"
+import { createConnections } from "typeorm"
 
 
 console.log("DataBase Connection STARTED")
 
-createConnection();
+createConnections();
 

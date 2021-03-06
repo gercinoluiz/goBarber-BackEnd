@@ -4,7 +4,7 @@
 export default  {
 
     jwt:{
-        secret:'umugugaifeitita',
+        secret:process.env.APP_SECRET || 'umugugaifeitita',
         expiresIn:'1d'
     }
 

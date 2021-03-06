@@ -7,6 +7,7 @@ import { inject, injectable } from "tsyringe"
 import { uuid } from "uuidv4";
 
 import IHashProvider from "@modules/users/providers/HashProviders/models/IHashProvider"
+import ICacheProvider from '../../../shared/container/providers/CaheProvider/models/ICacheProvider';
 
 
 interface Request {
@@ -27,9 +28,13 @@ class CreateUserService {
         private usersRepository: IUserRepository,
 
         @inject('HashProvider')
-        private hashProvider: IHashProvider
+        private hashProvider: IHashProvider,
 
-        ) {
+
+        @inject('CacheProvider')
+        private cacheProvider: ICacheProvider
+
+    ) {
 
     }
 
@@ -57,6 +62,10 @@ class CreateUserService {
             password: hashedPassword,
             email
         })
+
+        console.log('@DevLog-Data Base log ==> A new user has been created, we got to update Redis Cache')
+
+        await this.cacheProvider.invalidatePrefix('providers-list')
 
 
         return user;

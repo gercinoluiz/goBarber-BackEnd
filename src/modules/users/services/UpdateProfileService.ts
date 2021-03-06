@@ -39,6 +39,8 @@ export default class UpdateProfileService {
         old_password,
         password }: IRequest): Promise<User> {
 
+        console.log('/UpdateProfileService/execute')
+
         const user = await this.usersRepository.findById(user_id)
 
         if (!user) {
@@ -48,8 +50,15 @@ export default class UpdateProfileService {
 
         const isEmailRepeated = await this.usersRepository.findByEmail(email)
 
+        console.log({
+            isEmailRepeated: isEmailRepeated?.id,
+            user: user.id
+
+        })
 
         if (isEmailRepeated && isEmailRepeated.id !== user.id) {
+
+
             throw new AppError('Email already in use')
         }
 
@@ -62,10 +71,12 @@ export default class UpdateProfileService {
             throw new AppError('You gotta inform the old password')
         }
 
-        if (password && old_password) {
-            const checkOldPassword = await this.hashProvider.compareHash(user.password, old_password)
+        console.log({ old_password })
 
-            if (!checkOldPassword){
+        if (password && old_password) {
+            const checkOldPassword = await this.hashProvider.compareHash(old_password, user.password)
+
+            if (!checkOldPassword) {
                 throw new AppError('Old password does not match.');
 
             }
@@ -74,7 +85,7 @@ export default class UpdateProfileService {
 
         }
 
-
+        console.log({ user })
 
         return this.usersRepository.save(user)
 

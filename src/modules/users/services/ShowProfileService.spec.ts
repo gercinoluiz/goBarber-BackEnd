@@ -33,6 +33,6 @@ describe('ShowProfile', () => {
       showProfile.execute({
         user_id: 'non-existing-user-id',
       }),
-    ).rejects.toBeInstanceOf(AppError);
+    ).rejects.toBeInstanceOf(Error);
   });
 });

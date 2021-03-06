@@ -3,6 +3,7 @@ import AuthenticationService from "@modules/users/services/AuthenticationService
 import CreateUserService from './CreateUserService'
 import FakeHashProvider from "@modules/users/providers/HashProviders/fakes/FakeHashProvider"
 import AppError from '@shared/errors/AppError'
+import FakeCacheProvider from '../../../shared/container/providers/CaheProvider/fakes/FakeCashProvider';
 
 describe('Authenticate', () => {
 
@@ -10,10 +11,11 @@ describe('Authenticate', () => {
 
         const fakeRepository = new FakeUsersRepository()
         const fakeHashProvider = new FakeHashProvider()
+        const  fakeCacheProvider = new FakeCacheProvider()
 
-        const createUser = new CreateUserService(fakeRepository, fakeHashProvider)
+        const createUser = new CreateUserService(fakeRepository, fakeHashProvider, fakeCacheProvider)
 
-        const authenticateUser = new AuthenticationService(fakeRepository, fakeHashProvider)
+        const authenticateUser = new AuthenticationService(fakeHashProvider, fakeRepository)
 
         const newUser = await createUser.execute({
             email: 'jhondoe@example.com',
@@ -39,7 +41,7 @@ describe('Authenticate', () => {
 
 
 
-        const authenticateUser = new AuthenticationService(fakeRepository, fakeHashProvider)
+        const authenticateUser = new AuthenticationService(fakeHashProvider, fakeRepository)
 
 
 
@@ -56,10 +58,11 @@ describe('Authenticate', () => {
 
         const fakeRepository = new FakeUsersRepository()
         const fakeHashProvider = new FakeHashProvider()
+        const  fakeCacheProvider = new FakeCacheProvider()
 
-        const createUser = new CreateUserService(fakeRepository, fakeHashProvider)
+        const createUser = new CreateUserService(fakeRepository, fakeHashProvider, fakeCacheProvider)
 
-        const authenticateUser = new AuthenticationService(fakeRepository, fakeHashProvider)
+        const authenticateUser = new AuthenticationService(fakeHashProvider, fakeRepository )
 
         await createUser.execute({
             email: 'jhondoe@example.com',

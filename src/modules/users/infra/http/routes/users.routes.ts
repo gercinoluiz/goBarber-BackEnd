@@ -5,6 +5,7 @@ import uploadConfig from "@config/upload"
 
 import  UsersController from "@modules/users/infra/http/Controllers/UsersControler"
 import UpdateUserAvatarController  from "@modules/users/infra/http/Controllers/UpdateUserAvatarController"
+import reqChecker from '../../../../../shared/infra/http/celebrate/reqChecker';
 
 const upload = multer(uploadConfig)
 const usersRouter = Router();
@@ -13,7 +14,7 @@ const updateUserAvatarController = new UpdateUserAvatarController()
 
 
 
-usersRouter.post("/", usersController.create)
+usersRouter.post("/", reqChecker.user,  usersController.create)
 
 usersRouter.patch("/avatar", ensureAutentication, upload.single('avatar'), updateUserAvatarController.update)
 

@@ -1,3 +1,4 @@
+import "reflect-metadata"
 import { inject, injectable } from "tsyringe";
 import IUserRepository from '../repositories/IUserRepository';
 import AppError from '../../../shared/errors/AppError';
@@ -17,7 +18,7 @@ export default class ShowProfileService {
 
     constructor(
 
-        @inject('userRepository')
+        @inject('USersRepository')
         private usersRepository: IUserRepository
 
     ) { }

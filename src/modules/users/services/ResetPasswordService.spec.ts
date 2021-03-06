@@ -34,7 +34,7 @@ describe('Reset Password', () => {
             email: 'johndoe@example.com',
             password: '123456',
         });
-        
+
 
         const { token } = await fakeUserTokensRepository.generate(user.id);
         const generateHash = jest.spyOn(fakeHashProvider, 'generateHash')
