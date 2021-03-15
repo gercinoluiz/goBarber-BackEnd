@@ -17,7 +17,11 @@ export default function ensureAutentication(request: Request, response: Response
 
     const authHeader = request.headers.authorization
 
-    if (!authHeader) throw new AppError('jwt token is missing', 401)
+
+
+    if (!authHeader) throw new AppError('jwt token is missing', 402)
+
+    console.log({authHeader})
 
     // The code bellow separetes the Barear word from the token 7as85osa@!@i@ijidsaoj
     const [, token] = authHeader.split(' ') // The comma says i don want to use the first one from the desistruturation
@@ -25,6 +29,7 @@ export default function ensureAutentication(request: Request, response: Response
     // I am using a try here in Order to send a custom error
     try {
 
+        console.log({token})
         const decoded = verify(token, auth.jwt.secret)
 
         const { sub } = decoded as TokenPayload // forcing the decoded to have sub inside it **Nice
@@ -36,7 +41,7 @@ export default function ensureAutentication(request: Request, response: Response
         return next();
 
     } catch {
-
+        console.log('HERE')
         throw new AppError('Invalid JWT token', 401)
     }
 

@@ -16,18 +16,18 @@ export default class ProfileController {
 
         const userWithOutPAssword = classToClass(user)
 
-        
+
         return response.json(userWithOutPAssword)
     }
 
 
-    public async update(request: Request, response: Response): Promise<Response> {  
+    public async update(request: Request, response: Response): Promise<Response> {
 
         console.log('@DevLog ==> /ProfileControler/update')
 
-        const user_id = request.body.user_id
+        const user_id = request.user.id
 
-        console.log('user_Id',user_id)
+        console.log('user_Id', user_id)
 
         const { name, email, old_password, password } = request.body
 

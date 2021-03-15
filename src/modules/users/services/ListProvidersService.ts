@@ -2,6 +2,8 @@
 import IUserRepository from '@modules/users/repositories/IUserRepository';
 import { injectable, inject } from 'tsyringe';
 import User from '../infra/typeorm/entities/User';
+import { classToClass } from 'class-transformer';
+
 import ICacheProvider from '../../../shared/container/providers/CaheProvider/models/ICacheProvider';
 interface IRequest {
     user_id: string;
@@ -40,7 +42,7 @@ export default class ListProvidersService {
             console.log('@DevLog-Data Base audit ==> A query has been done in PostGress')
         }
 
-        await this.cacheProvider.save( `providers-list:${user_id}`, users)
+        await this.cacheProvider.save( `providers-list:${user_id}`, classToClass(users) )
 
         return users;
     }

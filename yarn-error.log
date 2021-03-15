@@ -1,8 +1,34 @@
 Arguments: 
-  /usr/bin/node /usr/share/yarn/bin/yarn.js add @types/radis
+  /usr/bin/node /usr/share/yarn/bin/yarn.js
 
 PATH: 
-  /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+  /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/vlenin/Apps/Sdk/emulator:/home/vlenin/Apps/Sdk/tools:/home/vlenin/Apps/Sdk/tools/bin:/home/vlenin/Apps/Sdk/platform-tools:
+  Usage: npm <command>
+  
+  where <command> is one of:
+      access, adduser, audit, bin, bugs, c, cache, ci, cit,
+      clean-install, clean-install-test, completion, config,
+      create, ddp, dedupe, deprecate, dist-tag, docs, doctor,
+      edit, explore, fund, get, help, help-search, hook, i, init,
+      install, install-ci-test, install-test, it, link, list, ln,
+      login, logout, ls, org, outdated, owner, pack, ping, prefix,
+      profile, prune, publish, rb, rebuild, repo, restart, root,
+      run, run-script, s, se, search, set, shrinkwrap, star,
+      stars, start, stop, t, team, test, token, tst, un,
+      uninstall, unpublish, unstar, up, update, v, version, view,
+      whoami
+  
+  npm <command> -h  quick help on <command>
+  npm -l            display full usage info
+  npm help <term>   search for help on <term>
+  npm help npm      involved overview
+  
+  Specify configs in the ini-formatted file:
+      /home/vlenin/.npmrc
+  or on the command line via: npm <command> --key value
+  Config info can be viewed via: npm help config
+  
+  npm@6.14.10 /usr/lib/node_modules/npm
 
 Yarn version: 
   1.22.5
@@ -14,17 +40,7 @@ Platform:
   linux x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@types%2fradis: Not found
-      at Request.params.callback [as _callback] (/usr/share/yarn/lib/cli.js:66988:18)
-      at Request.self.callback (/usr/share/yarn/lib/cli.js:140749:22)
-      at Request.emit (events.js:314:20)
-      at Request.<anonymous> (/usr/share/yarn/lib/cli.js:141721:10)
-      at Request.emit (events.js:314:20)
-      at IncomingMessage.<anonymous> (/usr/share/yarn/lib/cli.js:141643:12)
-      at Object.onceWrapper (events.js:420:28)
-      at IncomingMessage.emit (events.js:326:22)
-      at endReadableNT (_stream_readable.js:1241:12)
-      at processTicksAndRejections (internal/process/task_queues.js:84:21)
+  Error: EACCES: permission denied, mkdir '/home/vlenin/Documents/GoStack/Modulo2/primeiro-projeto-node/node_modules/@types/babel__core/node_modules/@babel'
 
 npm manifest: 
   {
@@ -42,6 +58,7 @@ npm manifest:
     "dependencies": {
       "@types/hapi__joi": "^17.1.6",
       "@types/nodemailer": "^6.4.0",
+      "@types/redis": "^2.8.28",
       "bcryptjs": "^2.4.3",
       "celebrate": "^13.0.4",
       "class-transformer": "^0.4.0",
@@ -60,12 +77,23 @@ npm manifest:
       "pg": "^8.3.3",
       "radis": "^2.0.0",
       "rate-limiter-flexible": "^2.2.1",
+      "redis": "^3.0.2",
       "reflect-metadata": "^0.1.13",
       "tsyringe": "^4.4.0",
       "typeorm": "^0.2.27",
       "uuidv4": "^6.2.3"
     },
     "devDependencies": {
+      "@babel/cli": "^7.10.3",
+      "@babel/core": "^7.10.3",
+      "@babel/node": "^7.10.3",
+      "@babel/plugin-proposal-class-properties": "^7.10.1",
+      "@babel/plugin-proposal-decorators": "^7.10.3",
+      "@babel/preset-env": "^7.10.3",
+      "@babel/preset-typescript": "^7.10.1",
+      "babel-plugin-module-resolver": "^4.0.0",
+      "babel-plugin-transform-typescript-metadata": "^0.3.0",
+  
       "@types/bcryptjs": "^2.4.2",
       "@types/cors": "^2.8.8",
       "@types/express": "^4.17.8",
@@ -851,6 +879,13 @@ Lockfile:
     version "1.2.3"
     resolved "https://registry.yarnpkg.com/@types/range-parser/-/range-parser-1.2.3.tgz#7ee330ba7caafb98090bece86a5ee44115904c2c"
     integrity sha512-ewFXqrQHlFsgc09MK5jP5iR7vumV/BYayNC6PgJO2LPe8vrnNFyjQjSppfEngITi0qvfKtzFvgKymGheFM9UOA==
+  
+  "@types/redis@^2.8.28":
+    version "2.8.28"
+    resolved "https://registry.yarnpkg.com/@types/redis/-/redis-2.8.28.tgz#5862b2b64aa7f7cbc76dafd7e6f06992b52c55e3"
+    integrity sha512-8l2gr2OQ969ypa7hFOeKqtFoY70XkHxISV0pAwmQ2nm6CSPb1brmTmqJCGGrekCo+pAZyWlNXr+Kvo6L/1wijA==
+    dependencies:
+      "@types/node" "*"
   
   "@types/serve-static@*":
     version "1.13.6"
@@ -4849,7 +4884,7 @@ Lockfile:
       indent-string "^2.1.0"
       strip-indent "^1.0.1"
   
-  redis-commands@1.7.0:
+  redis-commands@1.7.0, redis-commands@^1.5.0:
     version "1.7.0"
     resolved "https://registry.yarnpkg.com/redis-commands/-/redis-commands-1.7.0.tgz#15a6fea2d58281e27b1cd1acfb4b293e278c3a89"
     integrity sha512-nJWqw3bTFy21hX/CPKHth6sfhZbdiHP6bTawSgQBlKOVRG7EZkfHbbHwQJnrE4vsQf0CMNE+3gJ4Fmm16vdVlQ==
@@ -4865,6 +4900,16 @@ Lockfile:
     integrity sha1-tm2CjNyv5rS4pCin3vTGvKwxyLQ=
     dependencies:
       redis-errors "^1.0.0"
+  
+  redis@^3.0.2:
+    version "3.0.2"
+    resolved "https://registry.yarnpkg.com/redis/-/redis-3.0.2.tgz#bd47067b8a4a3e6a2e556e57f71cc82c7360150a"
+    integrity sha512-PNhLCrjU6vKVuMOyFu7oSP296mwBkcE6lrAjruBYG5LgdSqtRBoVQIylrMyVZD/lkF24RSNNatzvYag6HRBHjQ==
+    dependencies:
+      denque "^1.4.1"
+      redis-commands "^1.5.0"
+      redis-errors "^1.2.0"
+      redis-parser "^3.0.0"
   
   reflect-metadata@^0.1.13:
     version "0.1.13"

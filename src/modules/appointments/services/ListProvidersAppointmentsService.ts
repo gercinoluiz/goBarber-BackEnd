@@ -37,11 +37,7 @@ export default class ListProviderAppointmentsService {
 
         const cacheKey = `provider-appointments:${provider_id}:${year}-${month}-${day}`
 
-        let appointments
-
-        //TODDO: Rehabilitar o cache depois
-        
-        // = await this.cacheProvider.recover<Appointment[]>(cacheKey)
+        let appointments  = await this.cacheProvider.recover<Appointment[]>(cacheKey)
 
 
         if (!appointments) {
