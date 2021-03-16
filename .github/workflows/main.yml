@@ -42,10 +42,10 @@ jobs:
       - name: Copy dist to DGO
         uses: appleboy/scp-action@master
         with:
-          host: ${{secrets.SSH_HOST}}
-          username: ${{secrets.SSH_USER}}
-          port: ${{secrets.SSH_PORT}}
-          key: ${{secrets.SSH_KEY}}
+          host: 143.198.53.234
+          username: deploy
+          port: 22
+          key: deploy
           source: "dist"
           target: "test"
    
