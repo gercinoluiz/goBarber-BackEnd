@@ -4,6 +4,7 @@ import ICreateUserDTO from "@modules/users/dtos/ICreateUserDTO"
 import IUserRepository from "@modules/users/repositories/IUserRepository"
 import IFindAllproviders from '../../../dtos/IFindAllprovidersDTO';
 import { th } from 'date-fns/locale';
+import AppError from '../../../../../shared/errors/AppError';
 
 
 class UserRepository implements IUserRepository {
@@ -29,7 +30,11 @@ class UserRepository implements IUserRepository {
 
     public async create(data: ICreateUserDTO): Promise<User> {
 
+
         const user = this.ormRepository.create(data)
+
+
+
 
         await this.ormRepository.save(user)
 
@@ -41,21 +46,25 @@ class UserRepository implements IUserRepository {
         return await this.ormRepository.save(user)
     }
 
-    public async findlAllproviders({exept_user_id}: IFindAllproviders): Promise<User[]>{
+    public async findlAllproviders({ exept_user_id }: IFindAllproviders): Promise<User[]> {
 
-        let users : User[];
+        let users: User[];
 
-        if (exept_user_id){
+        if (exept_user_id) {
             users = await this.ormRepository.find({
-                where:{
-                    id: Not(exept_user_id)
+                where: {
+                    id: Not(exept_user_id),
+                    isProvider: true
                 }
             })
-        }else{
+        } else {
             users = await this.ormRepository.find()
         }
 
+
         return users
+
+
     }
 
 }

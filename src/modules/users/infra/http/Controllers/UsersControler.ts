@@ -13,12 +13,12 @@ export default class UsersController {
 
         try {
 
-            const { name, password, email } = request.body
+            const { name, password, email, isProvider } = request.body
 
             const createUser = container.resolve(CreateUserService)
 
 
-            const user = await createUser.execute({ name, email, password }) // I had to pass it as a DTO (data transfer object)
+            const user = await createUser.execute({ name, email, password, isProvider }) // I had to pass it as a DTO (data transfer object)
 
             //  delete user.password;
 

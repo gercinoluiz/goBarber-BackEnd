@@ -20,6 +20,9 @@ class User {
     @Column()
     avatar: string;
 
+    @Column()
+    isProvider: boolean;
+
     @CreateDateColumn()
     created_at: Date;
 

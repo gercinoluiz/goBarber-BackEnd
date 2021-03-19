@@ -14,7 +14,8 @@ interface Request {
 
     name: string,
     password: string,
-    email: string
+    email: string,
+    isProvider:boolean
 
 }
 
@@ -45,7 +46,7 @@ class CreateUserService {
     // appointment.provider_id = provider_id;
 
 
-    public async execute({ name, password, email }: Request): Promise<User> {
+    public async execute({ name, password, email, isProvider }: Request): Promise<User> {
 
 
 
@@ -60,7 +61,11 @@ class CreateUserService {
         const user = this.usersRepository.create({
             name,
             password: hashedPassword,
-            email
+            email,
+            isProvider,
+            avatar: 'no-photo.jpg'
+            
+        
         })
 
         console.log('@DevLog-Data Base log ==> A new user has been created, we got to update Redis Cache')
